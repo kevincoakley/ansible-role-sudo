@@ -1,0 +1,23 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  vars:
+    - sudo:
+        - username: user1
+          permissions:
+            - host: localhost
+              runas: root
+              nopasswd: true
+              command: /bin/bash
+            - nopasswd: false
+              command: /bin/whoami
+        - username: user2
+          permissions:
+            - command: ALL
+            - command: /bin/bash
+              state: absent
+
+  roles:
+    - ansible-role-sudo
