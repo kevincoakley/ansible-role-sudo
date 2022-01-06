@@ -3,7 +3,7 @@ ansible-role-sudo
 
 [![Build Status](https://travis-ci.org/kevincoakley/ansible-role-sudo.svg?branch=master)](https://travis-ci.org/kevincoakley/ansible-role-sudo)
 
-Manage sudos for CentOS 7 and Ubuntu 18.04
+Manage sudoers for CentOS and Ubuntu
 
 Requirements
 ------------
