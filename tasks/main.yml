@@ -12,6 +12,9 @@
     line: "{{ item.0.username }} {{ item.1.host | default('ALL') }}=({{ item.1.runas | default('ALL') }}) {% if item.1.nopasswd | default(true) %}NOPASSWD:{% endif %}{{ item.1.command | default('ALL') }}"
     regexp: ".*{{ item.1.command | default('ALL') }}.*"
     validate: /usr/sbin/visudo -cf %s
+    owner: root
+    group: root
+    mode: '0440'
   with_subelements:
     - "{{ sudo }}"
     - permissions
