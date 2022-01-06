@@ -1,0 +1,27 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Check the sudoers file for user1
+      command: /usr/sbin/visudo -cf /etc/sudoers.d/user1
+      register: user1_out
+      changed_when: false
+
+    - name: Verify the sudoers file for user1 parsed OK
+      fail:
+        msg: "/etc/sudoers.d/user1 failed to parse"
+      when:
+        - "'parsed OK' not in user1_out.stdout"
+
+    - name: Check the sudoers file for user2
+      command: /usr/sbin/visudo -cf /etc/sudoers.d/user2
+      register: user2_out
+      changed_when: false
+
+    - name: Verify the sudoers file for user2 parsed OK
+      fail:
+        msg: "/etc/sudoers.d/user2 failed to parse"
+      when:
+        - "'parsed OK' not in user2_out.stdout"
